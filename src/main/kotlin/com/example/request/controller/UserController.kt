@@ -3,6 +3,8 @@ package com.example.request.controller
 import com.example.request.model.User
 import jakarta.websocket.server.PathParam
 import org.springframework.web.bind.annotation.*
+import com.example.request.model.JSendResponse
+import org.springframework.web.bind.annotation.RequestBody
 
 @RestController
 @RequestMapping("/users")
@@ -18,8 +20,15 @@ class UserController {
     }*/
 
     @GetMapping()
-    fun user(@RequestBody user: User): String {
-        return "user hello ${user.name} ${user.age} ${user.id}"
+    fun user(@RequestBody user: User): JSendResponse<User> {
+
+        return JSendResponse(
+            status = "success",
+            data = user,
+            message = "User created successfully"
+        )
+
+
     }
 }
 
